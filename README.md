@@ -7,7 +7,7 @@ Goals and random stuff:
 
 - Create a Bot for the Discord Server of the E-Sport Division of the Freie Universität Berlin, to help users with research activities regarding gaming.
 - Obivously Open Source, duh
-- Possibly enabling other German Universities to use the Bot for their own servers
+- Enabling other German Universities to use the Bot for their own servers
 - RaspberryPi 4 will be used as a server for the Bot to run for now, Code in Python3
 
 
