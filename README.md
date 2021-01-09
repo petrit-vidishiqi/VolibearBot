@@ -1,8 +1,9 @@
 # VolibearBot
 
 This project is an on-going WIP!
+Let's not kid ourselves, it didn't even start yet, lmao.
 
-Goals:
+Goals and random stuff:
 
 - Create a Bot for the Discord Server of the E-Sport Division of the Freie Universität Berlin, to help users with research activities regarding gaming.
 - Obivously Open Source, duh
