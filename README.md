@@ -9,6 +9,7 @@ Goals and random stuff:
 - Obivously Open Source, duh
 - Enabling other German Universities to use the Bot for their own servers
 - RaspberryPi 4 will be used as a server for the Bot to run for now, Code in Python3
+- Until I set up the pi, I will just run the Bot on my MacBook
 
 
 (Probably) Used Libraries and APIs:
