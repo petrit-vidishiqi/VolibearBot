@@ -1,6 +1,7 @@
 import os
 from discord.ext import commands
 from dotenv import load_dotenv
+import riot
 
 
 '''
@@ -20,6 +21,13 @@ bot = commands.Bot(command_prefix='/')
 @bot.event
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
+
+
+@bot.command(name='gameinfo')
+async def gameinfo(ctx, *args):
+
+    #joining of args necessary because a summoner can consist of multiple words
+    await ctx.send(riot.gameinfo(" ".join(args[:])))
 
 
 bot.run(TOKEN)
