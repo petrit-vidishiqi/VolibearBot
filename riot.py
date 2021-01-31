@@ -112,8 +112,11 @@ def soloq_rank(user_id):
     Example: GOLD II 68LP 46-43 
     '''
 
-    request = requests.get('https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/' + user_id + '?api_key=' + token)
-    
+    if user_id == 'The requested user does not exist.':
+
+        return "user does not exist, or the name got changed"
+        
+    request = request = requests.get('https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/' + user_id + '?api_key=' + token)
     json_file = request.json()
 
     if json_file == []:
@@ -121,6 +124,7 @@ def soloq_rank(user_id):
         return 'Not ranked in yet.'
 
     for i in range (0, len(json_file)):
+
 
         if json_file[i]['queueType'] == 'RANKED_SOLO_5x5':
 
