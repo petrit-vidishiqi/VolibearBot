@@ -17,3 +17,4 @@ Goals and random stuff:
 - Discord.py https://discordpy.readthedocs.io/en/latest/api.html
 - Pandas https://pandas.pydata.org/
 - League of Legends API provided by Riot Games (Probably gonna do a python wrapper for that, or find a good existing one)
+- Toornament API 
