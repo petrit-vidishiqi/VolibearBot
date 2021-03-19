@@ -10,42 +10,6 @@ Not all API calls provided by Riot are implemented.
 load_dotenv()
 token = os.getenv("RIOT_TOKEN")
 
-def tournament(tournament_url):
-
-    req = requests.get(tournament_url)
-    soup = BeautifulSoup(req.text, "html.parser")
-
-    return_string = ''
-
-    participants_links = soup.select("size-1-of-4")
-
-    for links in participants_links:
-
-        print("--")
-        return_string = return_string + '\n \n' + tournament_team(links.a.get('href'))
-
-    return return_string
-
-
-def tournament_team(team_url):
-
-    team_url = team_url + "/info"
-    req = requests.get(team_url)
-    soup = BeautifulSoup(req.text, "html.parser")
-
-    team_string = soup.find("div", class_="name").get_text()
-
-    members_summoner_ids = soup.find_all("i", class_= "fa-gamepad")
-
-    for summoner in members_summoner_ids:
-
-        print("!!")
-        req_summonerID = v4_summoners(summoner.get_text())
-        summonerID = req_summonerID.json()['id']
-        team_string = team_string + '\n' + summoner.get_text() + get_soloq_rank(summonerID)
-
-    return team_string
-
 
 def gameinfo(user_name):
 
@@ -69,10 +33,17 @@ def gameinfo(user_name):
                 
                 if summoners['teamId'] == 100:
                 
+                    print("-------------------")
+                    print(summoners['summonerName'])
+                    print(champion(summoners['championId']))
+                    print(soloq_rank(summoners['summonerId']))
                     blue_side = blue_side + '  ' + summoners['summonerName'] + '   ' + champion(summoners['championId']) + '   ' + soloq_rank(summoners['summonerId']) + ' \n'
 
                 else:
-
+                    print("-------------------")
+                    print(summoners['summonerName'])
+                    print(champion(summoners['championId']))
+                    print(soloq_rank(summoners['summonerId']))
                     red_side = red_side + '  ' + summoners['summonerName'] + '   ' + champion(summoners['championId']) + '   ' + soloq_rank(summoners['summonerId']) + ' \n'                    
         
             game_info = blue_side + '\n' + red_side
@@ -138,9 +109,9 @@ def champion(champion_ID):
     #get name of a champion when given its ID
 
     champion_ID = str(champion_ID)
-    r = requests.get('https://raw.githubusercontent.com/ngryman/lol-champions/master/champions.json')
+    r = requests.get('http://ddragon.leagueoflegends.com/cdn/11.6.1/data/en_US/champion.json').json()
 
-    for elem in r.json():
+    for elem in r['data']:
 
-        if elem['key'] == champion_ID:
-            return elem['name']
+        if r['data'][elem]['key'] == champion_ID:
+            return r['data'][elem]['name']
