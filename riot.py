@@ -94,12 +94,16 @@ def soloq_rank(user_id):
 
         return 'Not ranked in yet.'
 
-    for i in range (0, len(json_file)):
+    try:
+        for i in range (0, len(json_file)):
 
 
-        if json_file[i]['queueType'] == 'RANKED_SOLO_5x5':
+            if json_file[i]['queueType'] == 'RANKED_SOLO_5x5':
 
-            return json_file[i]['tier'] + ' ' + json_file[i]['rank'] + ' ' + str(json_file[i]['leaguePoints']) +  'LP ' + str(json_file[i]['wins']) + '-' + str(json_file[i]['losses'])
+                return json_file[i]['tier'] + ' ' + json_file[i]['rank'] + ' ' + str(json_file[i]['leaguePoints']) +  'LP ' + str(json_file[i]['wins']) + '-' + str(json_file[i]['losses'])
+    except KeyError:
+
+        return "User could not be processed."
 
     return 'Not ranked in yet.'
 
