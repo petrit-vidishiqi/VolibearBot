@@ -18,8 +18,11 @@ def upcoming_match_opponent(link, team):
 
     upcoming_json = request_upcoming.json()
 
-
     found_match = False
+
+    if upcoming_json == []:
+
+        return "The tournament has finished."
 
     for matches in upcoming_json:
         
@@ -29,7 +32,7 @@ def upcoming_match_opponent(link, team):
                 try:
                     request_opponent = requests.get("https://api.toornament.com/viewer/v2/tournaments/" + tournament_id + "/participants/" + matches["opponents"][0]["participant"]["id"],
                             headers={"X-Api-Key":token})
-                    
+                    print(matches["opponents"][1]["participant"]["id"])
                     return participant_roster(request_opponent)
 
                 except TypeError:
@@ -40,6 +43,7 @@ def upcoming_match_opponent(link, team):
 
                 try:
                     print(matches["opponents"][1]["participant"]["name"])
+                    print(matches["opponents"][1]["participant"]["id"])
                     request_opponent = requests.get("https://api.toornament.com/viewer/v2/tournaments/" + tournament_id + "/participants/" + matches["opponents"][1]["participant"]["id"],
                             headers={"X-Api-Key":token})
                     return participant_roster(request_opponent)
@@ -51,6 +55,8 @@ def upcoming_match_opponent(link, team):
         except TypeError:
 
             continue
+
+    return "Currently no upcoming opponent scheduled."
 
 
 
@@ -67,7 +73,7 @@ def participant_roster(api_response):
     print(resp_json["lineup"])
     for players in resp_json["lineup"]:
         
-        player = players["custom_fields"]["summoner_name"]
+        player = players["custom_fields"]["summoner_namesummoner_name"]
         print(player)
         ret = ret + player + " - " + riot.soloq_rank(riot.summoner(player)) + ' \n'
         op_gg = op_gg + player.replace(" ", "+") + "%2C"
