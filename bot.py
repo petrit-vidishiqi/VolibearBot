@@ -37,5 +37,20 @@ async def nextMatch(ctx, *args):
     print(args[0], " ".join(args[1:]))
     await ctx.send(toornament.upcoming_match_opponent(args[0], (" ".join(args[1:]))))
 
+@bot.command(name='roster', help = 'Returns an overview of the roster for a given team in a given tournament')
+async def roster(ctx, *args):
+
+    #joining of args for the team necessary because a team name can consist of multiple words 
+    print(args[0], " ".join(args[1:]))
+    await ctx.send(toornament.roster(args[0], ("".join(args[1:]))))
+
+@bot.command(name='standings', help = 'Returns the current group standings for a given team.')
+async def standings(ctx, *args):
+
+    #joining of args for the team necessary because a team name can consist of multiple words 
+    print(args[0], " ".join(args[1:]))
+    await ctx.send(toornament.standings(args[0], ("".join(args[1:]))))
+
+
 
 bot.run(TOKEN)
